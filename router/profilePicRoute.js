@@ -5,8 +5,8 @@ const User = require("../model/User");
 const { cloudinary } = require("../cloudinary/index");
 
 
-router.get("/", async (req, res) => {
-    res.render("profilePic", { id: req.session.user._id });
+router.get("/", (req, res) => {
+    res.render("profilepic", { id: req.session.user._id });
 });
 
 
