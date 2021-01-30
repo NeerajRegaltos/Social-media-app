@@ -19,17 +19,17 @@ router.get("/", async (req, res) => {
         })
 });
 
-router.post("/home/search",(req,res)=>{
-    const search = req.body.search;
-    User.find({},(err,users)=>{
-        if(err){
-            console.log("Error in searching user",err);
-        }else{
-            res.render("search",{users});
-        }
-    })
+// router.post("/home/search",(req,res)=>{
+//     const search = req.body.search;
+//     User.find({},(err,users)=>{
+//         if(err){
+//             console.log("Error in searching user",err);
+//         }else{
+//             res.render("search",{users});
+//         }
+//     })
 
     
-})
+// })
 
 module.exports = router;
