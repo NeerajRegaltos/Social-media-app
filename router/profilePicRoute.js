@@ -21,10 +21,10 @@ router.post("/", (req, res) => {
     User.findByIdAndUpdate(req.session.user._id, { profilePic, imgFileName: fileName }, { new: true }, (err, data) => {
         if (err) {
             console.log(err)
-            return res.render("profilepic", { errorMessage: "Couldn't update Photo", id });
+            res.render("profilepic", { errorMessage: "Couldn't update Photo", id });
         } else {
             console.log("Updated User Profile Pic");
-            req.session.user = data;
+            // req.session.user = data;
             cloudinary.uploader.destroy(prevFileName);
             res.render("profilepic", { message: "Profile Pic Successfully Updated", id });
         }
