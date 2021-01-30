@@ -1,0 +1,41 @@
+<%- include("./layouts/mainHeader.ejs") %>
+
+    <style>
+        body {
+            background-color: rgb(252, 207, 136);
+        }
+
+        ul li {
+            margin: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        a:hover {
+            color: rgb(150, 22, 224);
+        }
+    </style>
+
+    <h3 class="mb-5 mt-3">Settings</h3>
+
+
+    <ul>
+        <li> <a href="/profilePic">Edit Profile Pic</a> </li>
+        <li> <a href="/bio">Edit your Bio</a> </li>
+        <li> <a href="/backPhoto">Edit background Pic</a> </li>
+        
+        <li> <a href="/logout">Logout</a> </li>
+        <li class="mt-5"><a href="/deleteAccount" class=" btn-sm btn-danger">Permanantly Delete your Account</a>
+        </li>
+    </ul>
+
+    <a href="/profile/<%= locals.id  %>" class="btn btn-primary mt-3">Go back to profile</a>
+
+   
+    <%- include("./layouts/mainFooter.ejs") %>
+
+        

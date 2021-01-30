@@ -1,0 +1,36 @@
+<%- include("./layouts/mainHeader.ejs") %>
+
+<style>
+    body{
+        background-color: rgb(252, 207, 136);
+    } 
+    a{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: large;
+    }
+    a:hover{
+        color: rgb(76, 7, 116);
+    }
+</style>
+
+
+<h4 class="mt-5">Edit Your Bio</h4>
+
+    <h4 style="color: red;">
+        <%= locals.errorMessage %>
+    </h4>
+    <h4 style="color: green;">
+        <%= locals.message %>
+    </h4>
+    <form method="post" class="mt-5">
+        <input type="text" name="bio" class="form-control" placeholder="Your Bio" maxlength="122">
+        <input type="submit" value="Change Bio" class="form-control btn btn-primary mt-3">
+    </form>
+
+<a href="/profile/<%= locals.id  %>" class="btn btn-success mt-5">Go back to profile</a>
+<a href="/settings" class="btn btn-warning mt-5">Go back to settings</a>
+
+
+
+    <%- include("./layouts/mainFooter.ejs") %>
