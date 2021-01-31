@@ -28,10 +28,10 @@
                     <div style="display: flex;">
                         <form action="/profile/<%= post.postedBy._id  %>" method="POST">
                             <input type="submit" name="username" value="<%= post.postedBy.username %>"
-                                style="border: none; background-color: white; font-weight: bolder; font-size: larger;">
+                                style="border: none; outline: none; background-color: white; font-weight: bolder; font-size: larger;">
                         </form>
 
-                        <a href="#" class=" btn-sm btn-primary ms-2 mb-1" style="text-decoration: none;">Follow</a>
+
                     </div>
                     <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
                         data-bs-ride="carousel">
@@ -45,7 +45,15 @@
                 </div>
                 <div class="d-flex bd-highlight">
                     <div class="flex-fill bd-highlight icon">
-                        <i class="far fa-heart"></i> <span>20</span>
+                        <form action="/like" method="POST">
+                            <div>
+                                <button type="submit" style="border: none; outline: none;"><a><i class="far fa-heart"></i></a></button>
+                                <span>20</span>
+                            </div>
+
+
+                        </form>
+
                     </div>
                     <div class="flex-fill bd-highlight icon">
                         <i class="fas fa-comments"></i><span>2</span>

@@ -20,20 +20,29 @@ router.get("/", async (req, res) => {
                 console.log("error in getting user posts", err)
                 res.render("profile", { errorMessage: "Can't Find Post" });
             } else {
-                
-                res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts });
+                User.findById({ _id: req.session.user._id }, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", button: "" });
+
+
+                    }
+                })
+
             }
         })
 
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const username = req.body.username;
     User.findOne({ username }, (err, data) => {
         if (err) {
             console.log(err);
         } else {
             const id = data._id;
+
             Post.find({ postedBy: id })
                 .populate("postedBy", "_id")
                 .exec((err, posts) => {
@@ -41,7 +50,20 @@ router.post("/", (req, res) => {
                         console.log("error in getting user posts", err)
                         res.render("profile");
                     } else {
-                        res.render("profile", { profilePic: data.profilePic, backgroundPic: data.backgroundPic, bio: data.bio, profileName: data.username, posts })
+                        User.findById({ _id: req.session.user._id }, (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                if (posts[0].postedBy._id == req.session.user._id) {
+                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "none", button: "" });
+                                }else{
+                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "", button: "none" });
+                                }
+
+
+                            }
+                        })
+
                     }
                 })
 

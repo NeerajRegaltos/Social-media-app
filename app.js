@@ -57,6 +57,7 @@ const settings = require("./router/settingsRoute");
 const deleteAccount = require("./router/deleteAccountRoute");
 const createPost = require("./router/createPostRoute");
 const deletePost = require("./router/deletePostRoute");
+const follow = require("./router/followRoute");
 
 
 app.use("/login", login);
@@ -72,4 +73,5 @@ app.use("/profilePic", requireLogin, upload.single("image"), profilePic);
 app.use("/backphoto", requireLogin, upload.single("image"), backphoto);
 app.use("/createPost", requireLogin, upload.single("image"), createPost);
 app.use("/deletepost", requireLogin, deletePost); 
+app.use("/follow", requireLogin, follow); 
  

@@ -12,14 +12,15 @@ const PostSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    
+
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     fileName: {    //Post File Name
         type: String
-    }
+    },
+    like: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 
 
 

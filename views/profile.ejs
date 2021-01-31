@@ -98,15 +98,18 @@
 
     <div class="row align-items-center">
         <div class="col-4">
-            <form action="/profile/follow" method="POST">
+            <form action="/follow" method="POST">
                 <input type="hidden" name="follow" value="<%= locals.profileName  %>">
-                <input type="submit" value="Follow" class="btn btn-success follow">
+                <input type="submit" value="Follow" class="btn btn-success follow"
+                    style="display: <%= locals.display %>;">
             </form>
         </div>
         <div class="col-4">
             <div class="row">
                 <div class="col">
-                    <h6 class="followers" style="margin-left: 35px;">20</h6>
+                    <h6 class="followers" style="margin-left: 35px;">
+                        <%= locals.followers.length %>
+                    </h6>
                 </div>
             </div>
             <h6 class="followers" style="color: rgb(233, 52, 203);">Followers</h6>
@@ -116,7 +119,9 @@
         <div class="col-4">
             <div class="row">
                 <div class="col">
-                    <h6 style="margin-left: 35px;" class="following">50</h6>
+                    <h6 style="margin-left: 35px;" class="following">
+                        <%= locals.following.length %>
+                    </h6>
                 </div>
             </div>
             <h6 class="following" style="color: rgb(75, 159, 233);">Following</h6>
@@ -126,19 +131,14 @@
     <hr>
     <div class="flex">
 
-        <h1 style="color: rgb(211, 87, 5);">
-            <%= locals.errorMessage %>
-        </h1>
-        <h4>
-            <%= locals.message %>
-        </h4>
+        
         <% locals.posts.forEach(post=> { %>
             <% if (post.photo!==undefined) { %>
                 <div class="container post">
 
-                   
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn" class="btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <button id="myBtn" class="btn" style="display: <%= locals.button %>;"><i
+                            class="fas fa-ellipsis-v"></i></button>
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
