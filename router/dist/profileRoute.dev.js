@@ -44,6 +44,7 @@ router.get("/", function _callee(req, res) {
                     following: result.following,
                     followers: result.followers,
                     display: "none",
+                    unfollow: "none",
                     button: ""
                   });
                 }
@@ -95,9 +96,25 @@ router.post("/", function _callee2(req, res) {
                           followers: data.followers,
                           following: data.following,
                           display: "none",
+                          unfollow: "none",
                           button: ""
                         });
                       } else {
+                        if (data.followers.includes(req.session.user._id)) {
+                          res.render("profile", {
+                            posts: posts,
+                            backgroundPic: data.backgroundPic,
+                            profilePic: data.profilePic,
+                            profileName: data.username,
+                            bio: data.bio,
+                            followers: data.followers,
+                            following: data.following,
+                            display: "none",
+                            unfollow: "",
+                            button: "none"
+                          });
+                        }
+
                         res.render("profile", {
                           posts: posts,
                           backgroundPic: data.backgroundPic,
@@ -107,6 +124,7 @@ router.post("/", function _callee2(req, res) {
                           followers: data.followers,
                           following: data.following,
                           display: "",
+                          unfollow: "none",
                           button: "none"
                         });
                       }

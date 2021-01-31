@@ -30,7 +30,7 @@ router.post("/", function (req, res) {
         }
       }, {
         "new": true
-      }, function (err, result) {
+      }, function (err, result2) {
         if (err) {
           console.log(err);
         } else {
@@ -40,6 +40,7 @@ router.post("/", function (req, res) {
             if (err) {
               console.log(err);
             } else {
+              console.log(result, result2);
               res.render("profile", {
                 profilePic: result.profilePic,
                 backgroundPic: result.backgroundPic,
@@ -47,7 +48,10 @@ router.post("/", function (req, res) {
                 profileName: result.username,
                 posts: posts,
                 following: result.following,
-                followers: result.followers
+                followers: result.followers,
+                button: "none",
+                display: "none",
+                unfollow: ""
               });
             }
           });

@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
         if (err) {
             console.log("Error In Following", err);
         } else {
-            User.findByIdAndUpdate(req.session.user._id, { $push: { following: result._id } }, { new: true }, (err, result) => {
+            User.findByIdAndUpdate(req.session.user._id, { $push: { following: result._id } }, { new: true }, (err, result2) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -19,8 +19,8 @@ router.post("/", (req, res) => {
                         if (err) {
                             console.log(err);
                         } else {
-
-                            res.render("profile", { profilePic: result.profilePic, backgroundPic: result.backgroundPic, bio: result.bio, profileName: result.username, posts, following: result.following, followers: result.followers, })
+                            console.log(result,result2)
+                            res.render("profile", { profilePic: result.profilePic, backgroundPic: result.backgroundPic, bio: result.bio, profileName: result.username, posts, following: result.following, followers: result.followers,button:"none",display:"none",unfollow:"" })
                         }
                     })
                 }

@@ -102,6 +102,12 @@
                 <input type="hidden" name="follow" value="<%= locals.profileName  %>">
                 <input type="submit" value="Follow" class="btn btn-success follow"
                     style="display: <%= locals.display %>;">
+
+            </form>
+            <form action="/unfollow" method="POST">
+                <input type="hidden" name="follow" value="<%= locals.profileName  %>">
+                <input type="submit" value="Unfollow" class="btn btn-success follow"
+                    style="display: <%= locals.unfollow %>;">
             </form>
         </div>
         <div class="col-4">
@@ -131,7 +137,7 @@
     <hr>
     <div class="flex">
 
-        
+
         <% locals.posts.forEach(post=> { %>
             <% if (post.photo!==undefined) { %>
                 <div class="container post">
@@ -139,6 +145,7 @@
                     <!-- Trigger/Open The Modal -->
                     <button id="myBtn" class="btn" style="display: <%= locals.button %>;"><i
                             class="fas fa-ellipsis-v"></i></button>
+
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
