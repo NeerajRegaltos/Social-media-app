@@ -24,9 +24,7 @@ router.get("/", async (req, res) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none",unfollow:"none", button: "" });
-
-
+                        res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", unfollow: "none", button: "" });
                     }
                 })
 
