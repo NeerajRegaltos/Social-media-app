@@ -6,13 +6,13 @@ const { cloudinary } = require("../cloudinary/index");
 
 router.post("/", (req, res) => {
     const postId = req.body.postId;
-    Post.findByIdAndDelete(postId, (err, deletedItem) => {
+    Post.findOneAndDelete({ _id: postId }, (err, deletedItem) => {
         if (err) {
             console.log(err);
-            res.render("profile", { errorMessage: "Can not Delete This post" })
         } else {
+            console.log("Post Deleted")
             cloudinary.uploader.destroy(deletedItem.fileName);
-            res.redirect("/")
+            res.redirect("/");
         }
     })
 });

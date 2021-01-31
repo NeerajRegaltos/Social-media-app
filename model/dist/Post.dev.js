@@ -24,7 +24,8 @@ var PostSchema = new mongoose.Schema({
   like: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  }]
+  }],
+  isLike: Boolean
 }, {
   timestamps: true
 });

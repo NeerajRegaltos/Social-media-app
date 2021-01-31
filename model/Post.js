@@ -20,7 +20,8 @@ const PostSchema = new mongoose.Schema({
     fileName: {    //Post File Name
         type: String
     },
-    like: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
+    like: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    isLike: Boolean
 
 
 

@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", unfollow: "none", button: "" });
+                        res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", unfollow: "none", button: "", id: req.session.user._id });
                     }
                 })
 
@@ -53,12 +53,12 @@ router.post("/", async (req, res) => {
                                 console.log(err);
                             } else {
                                 if (posts[0].postedBy._id == req.session.user._id) {
-                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "none", unfollow: "none", button: "" });
+                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "none", unfollow: "none", button: "", id: req.session.user._id });
                                 } else {
                                     if (data.followers.includes(req.session.user._id)) {
-                                        res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "none", unfollow: "", button: "none" });
+                                        res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "none", unfollow: "", button: "none", id: req.session.user._id });
                                     }
-                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "", unfollow: "none", button: "none" });
+                                    res.render("profile", { posts, backgroundPic: data.backgroundPic, profilePic: data.profilePic, profileName: data.username, bio: data.bio, followers: data.followers, following: data.following, display: "", unfollow: "none", button: "none", id: req.session.user._id });
                                 }
 
 

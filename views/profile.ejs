@@ -138,22 +138,24 @@
     <div class="flex">
 
 
-        <% locals.posts.forEach(post=> { %>
+        <% locals.posts.reverse().forEach(post=> { %>
             <% if (post.photo!==undefined) { %>
                 <div class="container post">
 
                     <!-- Trigger/Open The Modal -->
-                    <button id="myBtn" class="btn" style="display: <%= locals.button %>;"><i
+                    <button id="myBtn" class="btn"
+                        style="border: none; outline: none; display: <%= locals.button %>;"><i
                             class="fas fa-ellipsis-v"></i></button>
 
 
-                    <!-- The Modal -->
+                    <!-- The Modal  -->
                     <div id="myModal" class="modal">
 
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
                             <form action="/deletepost" method="POST">
+
                                 <input type="hidden" name="postId" value="<%= post._id  %>">
                                 <input type="hidden" name="fileName" value="<%= post.fileName  %>">
                                 <input type="submit" value="Delete Post" class="btn btn-primary">
@@ -175,7 +177,37 @@
                 </div>
                 <div class="d-flex bd-highlight">
                     <div class="flex-fill bd-highlight icon">
-                        <i class="far fa-heart"></i> <span>20</span>
+                        <% if (post.like.includes(locals.id)) { %>
+                            <form action="/unlike" method="POST">
+                                <div>
+                                    <input type="hidden" name="like" value="<%= post._id  %>">
+                                    <input type="hidden" name="where" value="">
+
+                                    <button type="submit"
+                                        style="border: none; background-color: white; outline: none;"><a><i
+                                                style="color: red;" class="fas fa-heart"></i></a></button>
+                                    <span>
+                                        <%= post.like.length %>
+                                    </span>
+                                </div>
+                            </form>
+                            <% }else{ %>
+                                <form action="/like" method="POST">
+                                    <div>
+                                        <input type="hidden" name="like" value="<%= post._id  %>">
+                                        <input type="hidden" name="where" value="home">
+
+                                        <button type="submit"
+                                            style="border: none; background-color: white; outline: none;"><a><i
+                                                    class="fas fa-heart"></i></a></button>
+                                        <span>
+                                            <%= post.like.length %>
+                                        </span>
+                                    </div>
+                                </form>
+                                <% } %>
+
+
                     </div>
                     <div class="flex-fill bd-highlight icon">
                         <i class="fas fa-comments"></i><span>2</span>
@@ -189,41 +221,42 @@
     <hr>
     <% } %>
 
-        <script>
-            // Get the modal
-            var modal = document.querySelector("#myModal");
 
-            // Get the button that opens the modal
-            var btn = document.querySelectorAll("#myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.forEach(b => {
-                b.onclick = function () {
-                    modal.style.display = "block";
-                }
-            });
-
-
-
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
 
         <% }) %>
 
+            <script>
+                // Get the modal
+                var modal = document.querySelector("#myModal");
+
+                // Get the button that opens the modal
+                var btn = document.querySelectorAll("#myBtn");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal 
+                btn.forEach(b => {
+                    b.onclick = function () {
+                        modal.style.display = "block";
+                    }
+                });
+
+
+
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
 
 
 

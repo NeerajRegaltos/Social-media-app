@@ -14,7 +14,6 @@ router.post("/", (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-
                     Post.find({ postedBy: result._id }, (err, posts) => {
                         if (err) {
                             console.log(err);

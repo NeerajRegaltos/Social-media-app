@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
                 console.log("error in getting user posts", err)
                 res.render("home", { errorMessage: "Can't Find Post" });
             } else {
-                
+                // console.log(posts)
                 res.render("home", { posts, id: req.session.user._id });
             }
         })

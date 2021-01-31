@@ -45,7 +45,8 @@ router.get("/", function _callee(req, res) {
                     followers: result.followers,
                     display: "none",
                     unfollow: "none",
-                    button: ""
+                    button: "",
+                    id: req.session.user._id
                   });
                 }
               });
@@ -97,7 +98,8 @@ router.post("/", function _callee2(req, res) {
                           following: data.following,
                           display: "none",
                           unfollow: "none",
-                          button: ""
+                          button: "",
+                          id: req.session.user._id
                         });
                       } else {
                         if (data.followers.includes(req.session.user._id)) {
@@ -111,7 +113,8 @@ router.post("/", function _callee2(req, res) {
                             following: data.following,
                             display: "none",
                             unfollow: "",
-                            button: "none"
+                            button: "none",
+                            id: req.session.user._id
                           });
                         }
 
@@ -125,7 +128,8 @@ router.post("/", function _callee2(req, res) {
                           following: data.following,
                           display: "",
                           unfollow: "none",
-                          button: "none"
+                          button: "none",
+                          id: req.session.user._id
                         });
                       }
                     }

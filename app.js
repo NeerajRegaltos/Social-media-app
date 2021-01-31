@@ -59,6 +59,8 @@ const createPost = require("./router/createPostRoute");
 const deletePost = require("./router/deletePostRoute");
 const follow = require("./router/followRoute");
 const unFollow = require("./router/unFollowRoute");
+const like = require("./router/likeRoute");
+const unlike = require("./router/unlikeRoute");
 
 
 app.use("/login", login);
@@ -73,7 +75,8 @@ app.use("/deleteAccount", requireLogin, deleteAccount);
 app.use("/profilePic", requireLogin, upload.single("image"), profilePic);
 app.use("/backphoto", requireLogin, upload.single("image"), backphoto);
 app.use("/createPost", requireLogin, upload.single("image"), createPost);
-app.use("/deletepost", requireLogin, deletePost); 
-app.use("/follow", requireLogin, follow); 
-app.use("/unfollow", requireLogin, unFollow); 
- 
+app.use("/deletepost", requireLogin, deletePost);
+app.use("/follow", requireLogin, follow);
+app.use("/unfollow", requireLogin, unFollow);
+app.use("/like", requireLogin, like);
+app.use("/unlike", requireLogin, unlike);
