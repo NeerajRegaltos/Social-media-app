@@ -15,11 +15,11 @@ router.post("/", (req, res) => {
                     console.log(err);
                 } else {
 
-                    Post.find({ postedBy: req.session.user._id }, (err, posts) => {
+                    Post.find({ postedBy: result._id }, (err, posts) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log(result, result2)
+
                             res.render("profile", { profilePic: result.profilePic, backgroundPic: result.backgroundPic, bio: result.bio, profileName: result.username, posts, following: result.following, followers: result.followers, button: "none", display: "none", unfollow: "" })
                         }
                     })

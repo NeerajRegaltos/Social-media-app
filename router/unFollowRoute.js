@@ -15,8 +15,7 @@ router.post("/", (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-
-                    Post.find({ postedBy: req.session.user._id }, (err, posts) => {
+                    Post.find({ postedBy: result._id }, (err, posts) => {
                         if (err) {
                             console.log(err);
                         } else {

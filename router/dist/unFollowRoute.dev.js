@@ -35,7 +35,7 @@ router.post("/", function (req, res) {
           console.log(err);
         } else {
           Post.find({
-            postedBy: req.session.user._id
+            postedBy: result._id
           }, function (err, posts) {
             if (err) {
               console.log(err);
