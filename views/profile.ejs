@@ -1,54 +1,5 @@
 <%- include("./layouts/proheader.ejs") %>
 
-    <style>
-        /* The Modal (background) */
-        .modal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
-            padding-top: 100px;
-            /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%;
-            /* Full width */
-            height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0);
-            /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 
     <div class="d-flex bd-highlight">
         <div class="flex-fill bd-highlight ms-2 mt-1">
@@ -139,127 +90,86 @@
 
 
         <% locals.posts.reverse().forEach(post=> { %>
-            <% if (post.photo!==undefined) { %>
-                <div class="container post">
+            <!-- <% if (post.photo!==undefined) { %> -->
+            <div class="container post">
 
-                    <!-- Trigger/Open The Modal -->
-                    <button id="myBtn" class="btn"
-                        style="border: none; outline: none; display: <%= locals.button %>;"><i
-                            class="fas fa-ellipsis-v"></i></button>
+                <form action="/deletepost" method="POST">
+                    <!-- <% console.log("inside",post._id) %>  -->
+                    <input type="hidden" name="postId" value="<%= post._id  %>">
+                    <input type="hidden" name="fileName" value="<%= post.fileName  %>">
+                    <div class="text-center">
 
-
-                    <!-- The Modal  -->
-                    <div id="myModal" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <form action="/deletepost" method="POST">
-
-                                <input type="hidden" name="postId" value="<%= post._id  %>">
-                                <input type="hidden" name="fileName" value="<%= post.fileName  %>">
-                                <input type="submit" value="Delete Post" class="btn btn-primary">
-                            </form>
-
-                        </div>
-
+                        <button type="submit" style="background-color: white; border: none; outline: none;"><i
+                                class="fas fa-trash-alt" style="color: red; font-size: 20px;"></i></button>
                     </div>
 
-                    <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
-                        data-bs-ride="carousel">
-                        <div class="carousel-item active">
-                            <img src="<%= post.photo  %> " draggable="false" class="d-block w-100" alt="post">
-                        </div>
+                </form>
+
+
+                <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
+                    data-bs-ride="carousel">
+                    <div class="carousel-item active">
+                        <img src="<%= post.photo  %> " draggable="false" class="d-block w-100" alt="post">
                     </div>
-                    <p class="mt-3">#<span>
-                            <%=post.caption %>
-                        </span></p>
                 </div>
-                <div class="d-flex bd-highlight">
-                    <div class="flex-fill bd-highlight icon">
-                        <% if (post.like.includes(locals.id)) { %>
-                            <form action="/unlike" method="POST">
+                <p class="mt-3">#<span>
+                        <%=post.caption %>
+                    </span></p>
+            </div>
+            <div class="d-flex bd-highlight">
+                <div class="flex-fill bd-highlight icon">
+                    <% if (post.like.includes(locals.id)) { %>
+                        <form action="/unlike" method="POST">
+                            <div>
+                                <input type="hidden" name="like" value="<%= post._id  %>">
+                                <input type="hidden" name="where" value="">
+
+                                <button type="submit"
+                                    style="border: none; background-color: white; outline: none;"><a><i
+                                            style="color: red;" class="fas fa-heart"></i></a></button>
+                                <span>
+                                    <%= post.like.length %>
+                                </span>
+                            </div>
+                        </form>
+                        <% }else{ %>
+                            <form action="/like" method="POST">
                                 <div>
                                     <input type="hidden" name="like" value="<%= post._id  %>">
-                                    <input type="hidden" name="where" value="">
+                                    <input type="hidden" name="where" value="home">
 
                                     <button type="submit"
                                         style="border: none; background-color: white; outline: none;"><a><i
-                                                style="color: red;" class="fas fa-heart"></i></a></button>
+                                                class="fas fa-heart"></i></a></button>
                                     <span>
                                         <%= post.like.length %>
                                     </span>
                                 </div>
                             </form>
-                            <% }else{ %>
-                                <form action="/like" method="POST">
-                                    <div>
-                                        <input type="hidden" name="like" value="<%= post._id  %>">
-                                        <input type="hidden" name="where" value="home">
-
-                                        <button type="submit"
-                                            style="border: none; background-color: white; outline: none;"><a><i
-                                                    class="fas fa-heart"></i></a></button>
-                                        <span>
-                                            <%= post.like.length %>
-                                        </span>
-                                    </div>
-                                </form>
-                                <% } %>
+                            <% } %>
 
 
-                    </div>
-                    <div class="flex-fill bd-highlight icon">
-                        <i class="fas fa-comments"></i><span>2</span>
-                    </div>
-                    <div class="flex-fill bd-highlight icon">
-                        <a href="<%= post.photo  %>" download="profilePost" target="_blank"><i
-                                class="fas fa-download"></i></a>
-                    </div>
                 </div>
+                <div class="flex-fill bd-highlight icon">
+                    <i class="fas fa-comments"></i><span>2</span>
+                </div>
+                <div class="flex-fill bd-highlight icon">
+                    <a href="<%= post.photo  %>" download="profilePost" target="_blank"><i
+                            class="fas fa-download"></i></a>
+                </div>
+            </div>
     </div>
     <hr>
-    <% } %>
+    <!-- <% } %> -->
 
 
 
-        <% }) %>
-
-            <script>
-                // Get the modal
-                var modal = document.querySelector("#myModal");
-
-                // Get the button that opens the modal
-                var btn = document.querySelectorAll("#myBtn");
-
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks the button, open the modal 
-                btn.forEach(b => {
-                    b.onclick = function () {
-                        modal.style.display = "block";
-                    }
-                });
-
-
-
-
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            </script>
+    <% }) %>
 
 
 
 
 
-            <%- include("./layouts/profooter.ejs") %>
+
+
+        <%- include("./layouts/profooter.ejs") %>

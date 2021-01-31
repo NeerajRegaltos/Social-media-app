@@ -6,6 +6,7 @@ const { cloudinary } = require("../cloudinary/index");
 
 router.post("/", (req, res) => {
     const postId = req.body.postId;
+    console.log(postId)
     Post.findOneAndDelete({ _id: postId }, (err, deletedItem) => {
         if (err) {
             console.log(err);

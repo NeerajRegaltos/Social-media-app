@@ -13,6 +13,7 @@ var _require = require("../cloudinary/index"),
 
 router.post("/", function (req, res) {
   var postId = req.body.postId;
+  console.log(postId);
   Post.findOneAndDelete({
     _id: postId
   }, function (err, deletedItem) {
