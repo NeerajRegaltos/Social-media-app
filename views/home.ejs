@@ -1,6 +1,6 @@
 <%- include("./layouts/proheader.ejs") %>
 
-    <div class="d-flex bd-highlight">
+    <div class="d-flex bd-highlight sticky-top">
         <div class="flex-fill bd-highlight ms-1 mt-1">
             <a href="/profile/<%= locals.id  %>" class="btn btn-danger ms-1">Profile</a>
         </div>
@@ -34,7 +34,8 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
                         data-bs-ride="carousel">
                         <div class="carousel-item active">
-                            <img src="<%= post.photo  %>" draggable="false" class="d-block w-100" alt="post">
+                            <!-- <img src="<%= post.photo  %>" draggable="false" class="d-block w-100" alt="post"> -->
+                            <img src="<%= post.photo  %>" draggable="false" width="500" height="400" style="max-width: 100%; height: auto; " alt="post">
                         </div>
                     </div>
                     <p class="mt-3">#<span>

@@ -13,7 +13,8 @@ body {
   font-size: 20px;
   width: 90%;
   border-radius: 7px;
-  border: none;
+  border: none; 
+  outline: none;
   padding: 12px;
   margin: 10px;
   background-color: rgba(228, 224, 224, 0.897);

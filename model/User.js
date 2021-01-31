@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        default: "https://res.cloudinary.com/instagram-clone-images/image/upload/v1611856731/nnj2bcmx14bhjypukgfd.jpg"
+        default: "https://res.cloudinary.com/instagram-clone-images/image/upload/v1612110200/sumkxhi1z6qiuvvmrdzw.png"
     },
     backgroundPic: {
         type: String,
