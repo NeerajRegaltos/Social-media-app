@@ -98,7 +98,10 @@
         <div class="bd-highlight text-center" style="border-left: 2px solid black; height: 20px;">
         </div>
         <div class="flex-fill bd-highlight text-center">
-            <a href="/videocollection" style="text-decoration: none; font-size: larger;">Videoes</a>
+            <form action="/videocollection" method="post">
+                <input type="hidden" name="username" value="<%= locals.profileName %>">
+                <input type="submit" value="Videoes" style="border: none; outline: none;">
+            </form>
         </div>
 
     </div>

@@ -20,47 +20,49 @@
             <% if(post._id!==undefined){ %>
                 <% if (post.photo==undefined) { %>
                     <div class="container post">
-                        <div class="dropdown text-center">
-                            <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false"
-                                style="border: none; outline: none; display:<%= locals.button %>">
-                                <i class="fas fa-trash-alt" style="color: red; font-size: 20px;"></i>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <h5>Delete Post?</h5>
-                                </li>
 
 
-                                <form action="/deletepost" method="POST">
-
-                                    <input type="hidden" name="postId" value="<%= post._id  %>">
-                                    <input type="hidden" name="fileName" value="<%= post.fileName  %>">
-
-
-                                    <li><button type="submit" style="border: none; outline: none; ">Yes</button></li>
-
-
-                                </form>
-                                <li><a class="dropdown-item" href="/profile/<%= locals.id  %>">No</a></li>
-
-                            </ul>
-                        </div>
-                        <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
-                            data-bs-ride="carousel">
-                            <div class="carousel-item active">
-
-
-                                <video draggable="false" width="500" height="400" controls autoplay loop
-                                    style="max-width: 100%; height: 600px;" muted>
-                                    <source src="<%= post.video %>">
-                                </video>
-
+                            <div class="dropdown text-center">
+                                <% if (id===user_id) { %>
+                                <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="border: none; outline: none;">
+                                    <i class="fas fa-trash-alt" style="color: red; font-size: 20px;"></i>
+                                </button>
+                                <% } %>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <h5>Delete Post?</h5>
+                                    </li>
+                                    <form action="/deletepost" method="POST">
+                                        <input type="hidden" name="postId" value="<%= post._id  %>">
+                                        <input type="hidden" name="fileName" value="<%= post.fileName  %>">
+                                        <li><button type="submit" style="border: none; outline: none; ">Yes</button>
+                                        </li>
+                                    </form>
+                                    <li><a class="dropdown-item" href="/profile/<%= locals.id  %>">No</a></li>
+                                </ul>
                             </div>
-                        </div>
-                        <p class="mt-3">#<span>
-                                <%= post.caption %>
-                            </span></p>
+                          
+
+
+
+
+                                <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
+                                    data-bs-ride="carousel">
+                                    <div class="carousel-item active">
+
+
+                                        <video draggable="false" width="500" height="400" controls autoplay loop
+                                            style="max-width: 100%; height: 600px;" muted>
+                                            <source src="<%= post.video %>">
+                                        </video>
+
+                                    </div>
+                                </div>
+                                <p class="mt-3">#<span>
+                                        <%= post.caption %>
+                                    </span></p>
                     </div>
                     <div class="d-flex bd-highlight">
                         <div class="flex-fill bd-highlight icon">

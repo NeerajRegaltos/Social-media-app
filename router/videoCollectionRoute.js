@@ -2,26 +2,31 @@ const express = require("express");
 const router = express.Router();
 const session = require("express-session");
 const Post = require("../model/Post");
+const User = require("../model/User");
+
+router.get("/",(req,res)=>{
+    res.redirect("/videocollection");
+})
+
+router.post("/", async (req, res) => {
+    const username = req.body.username;
+    User.findOne({ username: username }, (err, user) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Post.find({ postedBy: user._id }, (err, posts) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("videoCollection", { posts, id: req.session.user._id, user_id: posts[0].postedBy });
 
 
-
-router.get("/", async (req, res) => {
-    Post.find({})
-        .populate("postedBy", "_id username")
-        .exec((err, posts) => {
-            if (err) {
-                console.log("error in getting user posts", err)
-                res.render("home", { errorMessage: "Can't Find Post" });
-            } else {
-                // console.log(posts)
-                if (posts[0].postedBy._id == req.session.user._id) {
-                    res.render("videoCollection", { posts, id: req.session.user._id, button: "none" });
                 }
-                else {
-                    res.render("videoCollection", { posts, id: req.session.user._id, button: "" });
-                }
-            }
-        });
+            })
+        }
+    })
+
+
 });
 
 

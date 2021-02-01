@@ -40,7 +40,6 @@ router.post("/", async (req, res) => {
             console.log(err);
         } else {
             const id = data._id;
-
             Post.find({ postedBy: id })
                 .populate("postedBy", "_id")
                 .exec((err, posts) => {

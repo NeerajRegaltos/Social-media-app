@@ -21,7 +21,9 @@ router.post("/", function (req, res) {
       console.log(err);
     } else {
       console.log("Post Deleted");
-      cloudinary.uploader.destroy(deletedItem.fileName);
+      cloudinary.uploader.destroy(deletedItem.fileName, {
+        resource_type: "raw"
+      });
       res.redirect("/");
     }
   });
