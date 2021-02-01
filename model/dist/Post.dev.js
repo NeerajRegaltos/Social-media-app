@@ -25,7 +25,7 @@ var PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }],
-  isLike: Boolean
+  video: String
 }, {
   timestamps: true
 });

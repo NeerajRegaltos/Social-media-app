@@ -1,0 +1,30 @@
+<%- include("./layouts/mainHeader.ejs") %>
+
+    <div class="container mt-5">
+
+        <h3 class="mb-5">Post a Video </h3>
+        <h4>Note:</h4>
+        <p>Video Length must be of 30 seconds.</p>
+        <h4 style="color: red;">
+            <%= locals.errorMessage %>
+        </h4>
+        <h4 style="color: rgb(21, 255, 0);">
+            <%= locals.message %>
+        </h4>
+        <div class="form-group">
+            <label for="video">Upload a Video</label>
+            <form action="/video" method="POST" enctype="multipart/form-data">
+
+                <input type="file" name="video" accept="video/mp4,video/x-m4v,video/*" class="form-control" required>
+                <div class="form-group mt-3 mb-3">
+                    <label for="caption">Caption</label>
+                    <input type="text" autocomplete="off" name="caption" placeholder="#Type your Caption..."
+                        class="form-control" style="border: none; outline: none;">
+                </div>
+                <input type="submit" value="Post" class="form-control btn btn-info">
+            </form>
+            <a href="/profile/<%= locals.id  %>" class="btn btn-secondary mt-5">Go Back to profile</a>
+        </div>
+    </div>
+
+    <%- include("./layouts/mainFooter.ejs") %>

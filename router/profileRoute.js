@@ -18,12 +18,12 @@ router.get("/", async (req, res) => {
         .exec((err, posts) => {
             if (err) {
                 console.log("error in getting user posts", err)
-                res.render("profile", { errorMessage: "Can't Find Post" });
             } else {
                 User.findById({ _id: req.session.user._id }, (err, result) => {
                     if (err) {
                         console.log(err);
                     } else {
+                        // console.log(posts)
                         res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", unfollow: "none", button: "", id: req.session.user._id });
                     }
                 })

@@ -21,7 +21,7 @@ const PostSchema = new mongoose.Schema({
         type: String
     },
     like: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    isLike: Boolean
+    video: String,
 
 
 

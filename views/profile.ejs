@@ -4,12 +4,13 @@
     <div class="d-flex bd-highlight sticky-top">
         <div class="flex-fill bd-highlight ms-2 mt-1">
             <a href="/">
-                <h3 class="btn btn-primary">Home</h3>
+                <h3 class="btn btn-primary"><i class="fas fa-house-user"></i></h3>
             </a>
         </div>
-        <div class="flex-fill bd-highlight mt-1">
-            <a href="/createpost" class="btn btn-danger"><i class="fas fa-plus-square"></i></a>
+        <div class="flex-fill bd-highlight ms-1 mt-1">
+            <a href="javascript:history.back()" class="btn-sm btn-primary" style="text-decoration: none;">Go Back</a>
         </div>
+
         <div class="bd-highlight mt-1 me-1">
             <a href="/settings" class="btn btn-primary"><i class="fas fa-user-cog setting"></i></a>
         </div>
@@ -87,35 +88,62 @@
             <h6 class="following" style="color: rgb(75, 159, 233);">Following</h6>
         </div>
     </div>
-
     <hr>
+
+    <div class="d-flex bd-highlight sticky-top">
+        <div class="flex-fill bd-highlight text-center">
+            <a href="/profile/<%= locals.id  %>" style="text-decoration: none; font-size: larger;">Posts<span>(<%=
+                        locals.posts.length %>)</span></a>
+        </div>
+        <div class="bd-highlight text-center" style="border-left: 2px solid black; height: 20px;">
+        </div>
+        <div class="flex-fill bd-highlight text-center">
+            <a href="/videocollection" style="text-decoration: none; font-size: larger;">Videoes</a>
+        </div>
+
+    </div>
+    <hr>
+    </div>
+
     <div class="flex">
-
-
-        <% locals.posts.reverse().forEach(post=> { %>
+        <% locals.posts.reverse().map(post=> { %>
             <!-- <% if (post.photo!==undefined) { %> -->
             <div class="container post">
+                <div class="dropdown text-center">
+                    <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="border: none; outline: none; display:<%= locals.button %>">
+                        <i class="fas fa-trash-alt" style="color: red; font-size: 20px;"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li>
+                            <h5>Delete Post?</h5>
+                        </li>
 
-                <form action="/deletepost" method="POST">
-                    <!-- <% console.log("inside",post._id) %>  -->
-                    <input type="hidden" name="postId" value="<%= post._id  %>">
-                    <input type="hidden" name="fileName" value="<%= post.fileName  %>">
-                    <div class="text-center">
 
-                        <button type="submit"
-                            style="background-color: white; border: none; outline: none; display:<%= locals.button %>"><i
-                                class="fas fa-trash-alt" style="color: red; font-size: 20px;"></i></button>
-                    </div>
+                        <form action="/deletepost" method="POST">
 
-                </form>
+                            <input type="hidden" name="postId" value="<%= post._id  %>">
+                            <input type="hidden" name="fileName" value="<%= post.fileName  %>">
 
+
+                            <li><button type="submit" style="border: none; outline: none; ">Yes</button></li>
+
+
+                        </form>
+                        <li><a class="dropdown-item" href="/profile/<%= locals.id  %>">No</a></li>
+
+                    </ul>
+                </div>
 
                 <div id="carouselExampleSlidesOnly" class="carousel slide justify-content-center"
                     data-bs-ride="carousel">
                     <div class="carousel-item active">
-                        <!-- <img src="<%= post.photo  %> " draggable="false" class="d-block w-100" alt="post"> -->
-                        <img src="<%= post.photo  %>" draggable="false" width="500" height="400"
-                            style="max-width: 100%; height: auto; " alt="post">
+
+                        <% if (post.photo!==undefined) { %>
+                            <img src="<%= post.photo  %>" draggable="false" width="500" height="400"
+                                style="max-width: 100%; height: auto; " alt="post">
+                            <% } %>
+
                     </div>
                 </div>
                 <p class="mt-3">#<span>
@@ -128,7 +156,7 @@
                         <form action="/unlike" method="POST">
                             <div>
                                 <input type="hidden" name="like" value="<%= post._id  %>">
-                                <input type="hidden" name="where" value="">
+                                <input type="hidden" name="where" value="profile">
 
                                 <button type="submit"
                                     style="border: none; background-color: white; outline: none;"><a><i
@@ -153,15 +181,12 @@
                                 </div>
                             </form>
                             <% } %>
-
-
                 </div>
                 <div class="flex-fill bd-highlight icon">
                     <i class="fas fa-comments"></i><span>2</span>
                 </div>
                 <div class="flex-fill bd-highlight icon">
-                    <a href="<%= post.photo  %>" download="image" target="_blank"><i
-                            class="fas fa-download"></i></a>
+                    <a href="<%= post.photo  %>" download="image" target="_blank"><i class="fas fa-download"></i></a>
                 </div>
             </div>
     </div>
@@ -173,9 +198,21 @@
     <% }) %>
 
 
+        <div class="d-flex bd-highlight fixed-bottom">
+            <div class="flex-fill bd-highlight text-center">
+                <div class="dropdown">
+                    <button class="btn btn-danger" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="border: none; outline: none;">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="/createpost">Create a Post</a></li>
+                        <li><a class="dropdown-item" href="/video">Post a Video</a></li>
 
-
-
+                    </ul>
+                </div>
+            </div>
+        </div>
 
 
         <%- include("./layouts/profooter.ejs") %>

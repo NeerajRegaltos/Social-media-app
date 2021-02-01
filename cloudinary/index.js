@@ -11,7 +11,13 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     folder: "ProfilePic",
-    allowedFormats: ["jpeg", "png", "jpg"]
+    allowedFormats: ["jpeg", "png", "jpg"],
+    params: {
+        resource_type: "raw",
+        format: "mp4"
+    }
+
+
 });
 
 module.exports = {

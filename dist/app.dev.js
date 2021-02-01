@@ -81,6 +81,10 @@ var like = require("./router/likeRoute");
 
 var unlike = require("./router/unlikeRoute");
 
+var video = require("./router/video");
+
+var videoCollection = require("./router/videoCollectionRoute");
+
 app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);
@@ -98,3 +102,5 @@ app.use("/follow", requireLogin, follow);
 app.use("/unfollow", requireLogin, unFollow);
 app.use("/like", requireLogin, like);
 app.use("/unlike", requireLogin, unlike);
+app.use("/video", requireLogin, upload.single("video"), video);
+app.use("/videocollection", requireLogin, videoCollection);

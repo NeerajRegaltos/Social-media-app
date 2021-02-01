@@ -25,9 +25,6 @@ router.get("/", function _callee(req, res) {
           }).populate("postedBy", "_id").exec(function (err, posts) {
             if (err) {
               console.log("error in getting user posts", err);
-              res.render("profile", {
-                errorMessage: "Can't Find Post"
-              });
             } else {
               User.findById({
                 _id: req.session.user._id
@@ -35,6 +32,7 @@ router.get("/", function _callee(req, res) {
                 if (err) {
                   console.log(err);
                 } else {
+                  // console.log(posts)
                   res.render("profile", {
                     profileName: username,
                     bio: bio,

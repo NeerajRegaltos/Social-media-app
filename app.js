@@ -9,6 +9,7 @@ const { storage } = require("./cloudinary/index");
 const upload = multer({ storage });
 
 
+
 const app = express();
 
 
@@ -61,7 +62,8 @@ const follow = require("./router/followRoute");
 const unFollow = require("./router/unFollowRoute");
 const like = require("./router/likeRoute");
 const unlike = require("./router/unlikeRoute");
-
+const video = require("./router/video");
+const videoCollection = require("./router/videoCollectionRoute");
 
 app.use("/login", login);
 app.use("/register", register);
@@ -80,3 +82,5 @@ app.use("/follow", requireLogin, follow);
 app.use("/unfollow", requireLogin, unFollow);
 app.use("/like", requireLogin, like);
 app.use("/unlike", requireLogin, unlike);
+app.use("/video", requireLogin, upload.single("video"), video);
+app.use("/videocollection",requireLogin,videoCollection);
