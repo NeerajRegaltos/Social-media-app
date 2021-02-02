@@ -4,7 +4,7 @@ const session = require("express-session");
 const Post = require("../model/Post");
 const User = require("../model/User");
 
-router.get("/",(req,res)=>{
+router.get("/", (req, res) => {
     res.redirect("/videocollection");
 })
 

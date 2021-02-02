@@ -4,7 +4,7 @@ const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 
 router.get("/", (req, res) => {
-    res.render("register", { title: "Register" });
+    res.render("register", { title: "AmBlogger-Register" });
 });
 
 router.post("/", async (req, res) => {
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     if (username && email && password && confPassword) {
         if (password !== confPassword) {
             var errorMessage = "Passwords Do not match";
-            return res.status(200).render("register", { email, errorMessage, title: "Register" });
+            return res.status(200).render("register", { email, errorMessage, title: "AmBlogger-Register" });
         }
 
         const user = await User.findOne({
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
             .catch(error => {
                 console.log(error);
                 var errorMessage = "Something went Wrong";
-                res.status(200).render("register", { username, email, errorMessage, title: "Register" });
+                res.status(200).render("register", { username, email, errorMessage, title: "AmBlogger-Register" });
             });
 
         if (user === null) {
@@ -46,13 +46,13 @@ router.post("/", async (req, res) => {
             if (username === user.username) {
                 var errorMessage = "Username Already Exist";
             }
-            res.status(200).render("register", { errorMessage, title: "Register" });
+            res.status(200).render("register", { errorMessage, title: "AmBlogger-Register" });
         }
 
     }
     else {
         var errorMessage = "Make sure each field is filled";
-        res.status(200).render("register", { username, email, errorMessage, title: "Register" });
+        res.status(200).render("register", { username, email, errorMessage, title: "AmBlogger-Register" });
     }
 
 });

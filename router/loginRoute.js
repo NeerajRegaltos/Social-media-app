@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 
 router.get("/", (req, res) => {
-    res.render("login", { title: "Login" });
+    res.render("login", { title: "AmBlogger-Login" });
 });
 
 router.post("/", async (req, res) => {
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
                 console.log(error);
 
                 var errorMessage = "Something Went Wrong.";
-                res.render("login", { errorMessage, email, username, title: "Login" });
+                res.render("login", { errorMessage, email, username, title: "AmBlogger-Login" });
             });
 
         if (user !== null) {
@@ -35,10 +35,10 @@ router.post("/", async (req, res) => {
             }
         }
         var errorMessage = "Credentials incorrect.";
-        return res.render("login", { errorMessage, title: "Login" });
+        return res.render("login", { errorMessage, title: "AmBlogger-Login" });
     }
     var errorMessage = "Make sure each field has correct values.";
-    return res.render("login", { errorMessage, title: "Login" });
+    return res.render("login", { errorMessage, title: "AmBlogger-Login" });
 
 });
 
