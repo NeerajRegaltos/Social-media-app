@@ -65,6 +65,8 @@ const unlike = require("./router/unlikeRoute");
 const video = require("./router/video");
 const videoCollection = require("./router/videoCollectionRoute");
 const deleteVideoes = require("./router/deleteVideoes");
+const comments = require("./router/commentRoute");
+const postComment = require("./router/postCommentRoute");
 
 app.use("/login", login);
 app.use("/register", register);
@@ -84,5 +86,7 @@ app.use("/unfollow", requireLogin, unFollow);
 app.use("/like", requireLogin, like);
 app.use("/unlike", requireLogin, unlike);
 app.use("/video", requireLogin, upload.single("video"), video);
-app.use("/videocollection",requireLogin,videoCollection);
-app.use("/deleteVideoes",requireLogin,deleteVideoes);
+app.use("/videocollection", requireLogin, videoCollection);
+app.use("/deleteVideoes", requireLogin, deleteVideoes);
+app.use("/comment",requireLogin, comments);
+app.use("/postcomment", requireLogin, postComment);

@@ -87,6 +87,10 @@ var videoCollection = require("./router/videoCollectionRoute");
 
 var deleteVideoes = require("./router/deleteVideoes");
 
+var comments = require("./router/commentRoute");
+
+var postComment = require("./router/postCommentRoute");
+
 app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);
@@ -107,3 +111,5 @@ app.use("/unlike", requireLogin, unlike);
 app.use("/video", requireLogin, upload.single("video"), video);
 app.use("/videocollection", requireLogin, videoCollection);
 app.use("/deleteVideoes", requireLogin, deleteVideoes);
+app.use("/comment", requireLogin, comments);
+app.use("/postcomment", requireLogin, postComment);

@@ -22,8 +22,8 @@ const PostSchema = new mongoose.Schema({
     },
     like: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     video: String,
-
-
+    comment: [{ type: String }],
+    commentText: [{ type: String }]
 
 }, { timestamps: true });
 
