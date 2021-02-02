@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
     allowedFormats: ["jpeg", "png", "jpg"],
     params: {
         resource_type: "raw",
-        format: "mp4"
+        // format: "mp4"
     }
 
 

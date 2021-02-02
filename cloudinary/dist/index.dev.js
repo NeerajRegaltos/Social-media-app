@@ -15,8 +15,8 @@ var storage = new CloudinaryStorage({
   folder: "ProfilePic",
   allowedFormats: ["jpeg", "png", "jpg"],
   params: {
-    resource_type: "raw",
-    format: "mp4"
+    resource_type: "raw" // format: "mp4"
+
   }
 });
 module.exports = {

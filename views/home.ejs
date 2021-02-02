@@ -10,7 +10,8 @@
 
     <div class="d-flex bd-highlight sticky-top">
         <div class="flex-fill bd-highlight ms-1 mt-1">
-            <a href="/profile/<%= locals.id  %>" class="btn btn-danger ms-1"><i class="fas fa-user-tie"></i></a>
+            <a href="/"> <img src="/images/logo.png" alt="logo" width="150px"></a>
+
         </div>
 
         <div class="bd-highlight mt-1 me-1">
@@ -99,10 +100,14 @@
         <% }) %>
 
             <div class="d-flex bd-highlight fixed-bottom ">
-                <div class="flex-fill bd-highlight text-center">
+                <div class="flex-fill bd-highlight ms-1">
+                    <a href="/profile/<%= locals.id  %>" class="btn btn-danger ms-1"><i class="fas fa-user-tie"></i></a>
+                </div>
+
+                <div class="flex-fill bd-highlight ">
                     <div class="dropdown">
-                        <button class="btn-sm btn-danger" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="border: none; outline: none;">
+                        <button class="btn-sm btn-danger" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="border: none; outline: none;">
                             <i class="fas fa-plus-circle" style="font-size: 30px;"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -31,11 +31,13 @@ router.post("/", function _callee(req, res) {
               }, function (err, posts) {
                 if (err) {
                   console.log(err);
+                  res.render("videoCollection");
                 } else {
+                  console.log(posts);
                   res.render("videoCollection", {
                     posts: posts,
                     id: req.session.user._id,
-                    user_id: posts[0].postedBy
+                    user_id: posts.length > 0 ? posts[0].postedBy : ""
                   });
                 }
               });

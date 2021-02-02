@@ -17,8 +17,11 @@ router.post("/", async (req, res) => {
             Post.find({ postedBy: user._id }, (err, posts) => {
                 if (err) {
                     console.log(err);
+                    res.render("videoCollection");
                 } else {
-                    res.render("videoCollection", { posts, id: req.session.user._id, user_id: posts[0].postedBy });
+                    console.log(posts)
+
+                    res.render("videoCollection", { posts, id: req.session.user._id, user_id: posts.length > 0 ? posts[0].postedBy : "" });
 
 
                 }
