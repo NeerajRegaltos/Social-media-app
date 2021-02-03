@@ -1,30 +1,19 @@
 <%- include("./layouts/proheader.ejs") %>
-    <style>
-        body {
-            margin: 0;
-            overflow-x: hidden;
-        }
 
-        .navbar {
-            overflow: hidden;
-            background-color: white;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-        }
-    </style>
 
-    <div class="navbar fixed-top">
+    <div class="d-flex bd-highlight sticky-top ">
+        <div class="flex-fill bd-highlight ms-2 mt-1">
+            <a href="/">
+                <h3 class="btn btn-primary"><i class="fas fa-house-user"></i></h3>
+            </a>
+        </div>
+        <div class="flex-fill bd-highlight ms-1 mt-1">
+            <a href="javascript:history.back()" class="btn-sm btn-primary" style="text-decoration: none;">Go Back</a>
+        </div>
 
-        <a href="/">
-            <h3 class="btn btn-primary"><i class="fas fa-house-user"></i></h3>
-        </a>
-
-        <a href="javascript:history.back()" class="btn-sm btn-primary" style="text-decoration: none;">Go Back</a>
-
-        <a href="/settings" class="btn btn-primary"><i class="fas fa-user-cog setting"></i></a>
-
+        <div class="bd-highlight mt-1 me-1">
+            <a href="/settings" class="btn btn-primary"><i class="fas fa-user-cog setting"></i></a>
+        </div>
     </div>
 
     <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -188,7 +177,7 @@
 
                                     <button type="submit"
                                         style="border: none; background-color: white; outline: none;"><i
-                                            class="fas fa-heart" style="font-size: 30px;"></i></button>
+                                                class="fas fa-heart" style="font-size: 30px;"></i></button>
                                     <span>
                                         <%= post.like.length %>
                                     </span>
@@ -206,20 +195,21 @@
                             style="border: none; outline: none; background-color: white; font-weight: bold;">Post</button>
                     </form>
                 </div>
-                <div class="col-3">
-                    <form action="/comment" method="POST">
-                        <div>
-                            <input type="hidden" name="postId" value="<%= post._id  %>">
+            <div class="col-3">
+                <form action="/comment" method="POST">
+                    <div>
+                        <input type="hidden" name="postId" value="<%= post._id  %>">
 
-                            <button type="submit" style="background-color: white; outline: none; border: none;"><i
-                                    class="fas fa-comment" style="font-size: 30px;"></i></button>
-                            <span>
-                                <%= post.comment.length %>
-                            </span>
-                        </div>
-                    </form>
-
-                </div>
+                        <button type="submit"
+                            style="background-color: white; outline: none; border: none;"><i
+                                class="fas fa-comment" style="font-size: 30px;"></i></button>
+                        <span>
+                            <%= post.comment.length %>
+                        </span>
+                    </div>
+                </form>
+                
+            </div>
             </div>
     </div>
     <hr>
