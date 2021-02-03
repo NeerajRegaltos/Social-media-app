@@ -13,23 +13,37 @@
 
     <div style="display: flex; flex-direction: column;">
 
-        <% for(var i=0;i<locals.users.length;i++){ %> 
+        <% for(var i=0;i<locals.users.length;i++){ %>
 
-            <div class="d-flex bd-highlight sticky-top">
-                <div class="bd-highlight ms-2 ">
+            <div class="row">
+                <div class="col-2 ">
                     <h5>
                         <%= locals.users[i] %>
                     </h5>
                 </div>
-                <div class="flex-fill bd-highlight ms-3 ">
+                <div class="col-8">
                     <p>
-                        <%= locals.commentText[i]  %> 
+                        <%= locals.commentText[i] %>
                     </p>
                 </div>
+                <% if (locals.id===locals.postedBy) { %>
+
+
+                    <div class="col-1 ">
+                        <form action="/comment/deletecomment" method="POST">
+                            <input type="hidden" name="id" value="<%= locals.postId  %>">
+                            <input type="hidden" name="commentText" value="<%= locals.commentText[i] %>">
+                            <input type="hidden" name="user" value="<%= locals.users[i] %>">
+                            <button type="submit" style="outline: none; border:none; background-color: #fff;"><i
+                                    class="fas fa-trash" style="color:red;"></i></button>
+                        </form>
+                    </div>
+
+                    <% } %>
             </div>
 
-            <% } %> 
-        
+            <% } %>
+
 
     </div>
 
