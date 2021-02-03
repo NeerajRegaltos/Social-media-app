@@ -16,7 +16,7 @@
         <% for(var i=0;i<locals.users.length;i++){ %>
 
             <div class="row">
-                <div class="col-3 ">
+                <div class="col-4">
                     <h5>
                         <%= locals.users[i] %>
                     </h5>
@@ -26,9 +26,9 @@
                         <%= locals.commentText[i] %>
                     </p>
                 </div>
-                <% if (locals.myUser===locals.postUser || locals.users.includes(locals.myUser)) { %>
+                <% if (locals.myUser===locals.postUser ) { %>
 
-                    <div class="col-1 ">
+                    <div class="col-1">
                         <form action="/comment/deletecomment" method="POST">
                             <input type="hidden" name="id" value="<%= locals.postId  %>">
                             <input type="hidden" name="commentText" value="<%= locals.commentText[i] %>">
@@ -39,6 +39,7 @@
                     </div>
 
                     <% } %>
+
 
             </div>
 

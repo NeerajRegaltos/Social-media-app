@@ -21,7 +21,7 @@ router.post("/", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(post);
+      // console.log(post)
       var users = post.comment;
       var postedBy = post.postedBy;
       User.findOne({
@@ -30,7 +30,6 @@ router.post("/", function (req, res) {
         if (err) {
           console.log(err);
         } else {
-          console.log(user);
           var postUser = user.username;
           User.findOne({
             _id: req.session.user._id
@@ -38,8 +37,10 @@ router.post("/", function (req, res) {
             if (err) {
               console.log(err);
             } else {
-              var myUser = myuser.username;
+              var myUser = myuser.username; // console.log(myuser,myUser)
+
               var commentText = post.commentText;
+              console.log("Users array", users);
               res.render("comment", {
                 users: users,
                 commentText: commentText,

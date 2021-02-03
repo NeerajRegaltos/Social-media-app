@@ -16,21 +16,23 @@ router.post("/", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(post)
+            // console.log(post)
             const users = post.comment;
             const postedBy = post.postedBy;
             User.findOne({ _id: postedBy }, (err, user) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(user)
+                  
                     const postUser = user.username;
                     User.findOne({ _id: req.session.user._id }, (err, myuser) => {
                         if (err) {
                             console.log(err);
                         } else {
                             const myUser = myuser.username;
+                            // console.log(myuser,myUser)
                             const commentText = post.commentText;
+                            console.log("Users array",users)
                             res.render("comment", { users, commentText, id: req.session.user._id, postId, postUser,myUser });
                         }
                     })
