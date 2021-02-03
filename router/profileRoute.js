@@ -27,10 +27,8 @@ router.get("/", async (req, res) => {
                         res.render("profile", { profileName: username, bio, profilePic, backgroundPic, posts, following: result.following, followers: result.followers, display: "none", unfollow: "none", button: "", id: req.session.user._id });
                     }
                 })
-
             }
-        })
-
+        });
 });
 
 router.post("/", async (req, res) => {

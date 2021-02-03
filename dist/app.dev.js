@@ -91,6 +91,8 @@ var comments = require("./router/commentRoute");
 
 var postComment = require("./router/postCommentRoute");
 
+var userlist = require("./router/userListRoute");
+
 app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);
@@ -113,3 +115,4 @@ app.use("/videocollection", requireLogin, videoCollection);
 app.use("/deleteVideoes", requireLogin, deleteVideoes);
 app.use("/comment", requireLogin, comments);
 app.use("/postcomment", requireLogin, postComment);
+app.use("/userlist", requireLogin, userlist);
