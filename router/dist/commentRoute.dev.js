@@ -8,6 +8,8 @@ var router = express.Router();
 
 var Post = require("../model/Post");
 
+var User = require("../model/User");
+
 router.get("/", function (req, res) {
   res.redirect("/comment");
 });
@@ -19,15 +21,36 @@ router.post("/", function (req, res) {
     if (err) {
       console.log(err);
     } else {
+      console.log(post);
       var users = post.comment;
-      console.log(postId);
-      var commentText = post.commentText;
-      res.render("comment", {
-        users: users,
-        commentText: commentText,
-        id: req.session.user._id,
-        postId: postId,
-        postedBy: post.posdtedBy
+      var postedBy = post.postedBy;
+      User.findOne({
+        _id: postedBy
+      }, function (err, user) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(user);
+          var postUser = user.username;
+          User.findOne({
+            _id: req.session.user._id
+          }, function (err, myuser) {
+            if (err) {
+              console.log(err);
+            } else {
+              var myUser = myuser.username;
+              var commentText = post.commentText;
+              res.render("comment", {
+                users: users,
+                commentText: commentText,
+                id: req.session.user._id,
+                postId: postId,
+                postUser: postUser,
+                myUser: myUser
+              });
+            }
+          });
+        }
       });
     }
   });

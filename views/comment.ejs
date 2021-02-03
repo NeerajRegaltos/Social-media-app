@@ -26,8 +26,7 @@
                         <%= locals.commentText[i] %>
                     </p>
                 </div>
-                <% if (locals.id===locals.postedBy) { %>
-
+                <% if (locals.myUser===locals.postUser || locals.users.includes(locals.myUser)) { %>
 
                     <div class="col-1 ">
                         <form action="/comment/deletecomment" method="POST">
@@ -40,6 +39,7 @@
                     </div>
 
                     <% } %>
+
             </div>
 
             <% } %>

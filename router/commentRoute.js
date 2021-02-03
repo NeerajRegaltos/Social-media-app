@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const router = express.Router();
 const Post = require("../model/Post");
+const User = require("../model/User");
 
 
 router.get("/", (req, res) => {
@@ -15,10 +16,27 @@ router.post("/", (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            console.log(post)
             const users = post.comment;
-            console.log(postId)
-            const commentText = post.commentText;
-            res.render("comment", { users, commentText, id: req.session.user._id, postId, postedBy: post.posdtedBy });
+            const postedBy = post.postedBy;
+            User.findOne({ _id: postedBy }, (err, user) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(user)
+                    const postUser = user.username;
+                    User.findOne({ _id: req.session.user._id }, (err, myuser) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            const myUser = myuser.username;
+                            const commentText = post.commentText;
+                            res.render("comment", { users, commentText, id: req.session.user._id, postId, postUser,myUser });
+                        }
+                    })
+                }
+            })
+
         }
     });
 })
