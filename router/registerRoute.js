@@ -14,10 +14,15 @@ router.post("/", async (req, res) => {
     const confPassword = req.body.confPassword;
 
     if (username && email && password && confPassword) {
+        if(password.length<5){
+            var errorMessage = "Passwords Length should be more than 5";
+            return res.status(200).render("register", { email, errorMessage, title: "AmBlogger-Register" });
+        }
         if (password !== confPassword) {
             var errorMessage = "Passwords Do not match";
             return res.status(200).render("register", { email, errorMessage, title: "AmBlogger-Register" });
         }
+        
 
         const user = await User.findOne({
             $or: [{ email }, { username }]

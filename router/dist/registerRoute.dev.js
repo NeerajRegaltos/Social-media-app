@@ -25,12 +25,25 @@ router.post("/", function _callee(req, res) {
           confPassword = req.body.confPassword;
 
           if (!(username && email && password && confPassword)) {
-            _context.next = 24;
+            _context.next = 27;
             break;
           }
 
-          if (!(password !== confPassword)) {
+          if (!(password.length < 5)) {
             _context.next = 8;
+            break;
+          }
+
+          errorMessage = "Passwords Length should be more than 5";
+          return _context.abrupt("return", res.status(200).render("register", {
+            email: email,
+            errorMessage: errorMessage,
+            title: "AmBlogger-Register"
+          }));
+
+        case 8:
+          if (!(password !== confPassword)) {
+            _context.next = 11;
             break;
           }
 
@@ -41,8 +54,8 @@ router.post("/", function _callee(req, res) {
             title: "AmBlogger-Register"
           }));
 
-        case 8:
-          _context.next = 10;
+        case 11:
+          _context.next = 13;
           return regeneratorRuntime.awrap(User.findOne({
             $or: [{
               email: email
@@ -60,28 +73,28 @@ router.post("/", function _callee(req, res) {
             });
           }));
 
-        case 10:
+        case 13:
           user = _context.sent;
 
           if (!(user === null)) {
-            _context.next = 19;
+            _context.next = 22;
             break;
           }
 
           data = req.body;
-          _context.next = 15;
+          _context.next = 18;
           return regeneratorRuntime.awrap(bcrypt.hash(password, 10));
 
-        case 15:
+        case 18:
           data.password = _context.sent;
           User.create(data).then(function (user) {
             req.session.user = user;
             return res.redirect("/login");
           });
-          _context.next = 22;
+          _context.next = 25;
           break;
 
-        case 19:
+        case 22:
           if (email === user.email) {
             errorMessage = "Email already in use";
           }
@@ -95,11 +108,11 @@ router.post("/", function _callee(req, res) {
             title: "AmBlogger-Register"
           });
 
-        case 22:
-          _context.next = 26;
+        case 25:
+          _context.next = 29;
           break;
 
-        case 24:
+        case 27:
           errorMessage = "Make sure each field is filled";
           res.status(200).render("register", {
             username: username,
@@ -108,7 +121,7 @@ router.post("/", function _callee(req, res) {
             title: "AmBlogger-Register"
           });
 
-        case 26:
+        case 29:
         case "end":
           return _context.stop();
       }

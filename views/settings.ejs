@@ -29,8 +29,21 @@
         <li> <a href="/deleteVideoes">Delete videoes</a> </li>
         
         <li> <a href="/logout">Logout</a> </li>
-        <li class="mt-5"><a href="/deleteAccount" class=" btn-sm btn-danger">Permanantly Delete your Account</a>
-        </li>
+
+
+        <div class="dropdown">
+            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+              Delete Account Permanantly
+            </button>
+            <ul class="dropdown-menu dropdown-menu-danger" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item active"> Your data will be lost. Are You sure?</a></li>
+              <li ><a href="/deleteAccount" class="dropdown-item btn-sm btn-danger">Yes</a>
+              </li>
+              <li><a class="dropdown-item" href="/settings">No</a></li>
+              
+            </ul>
+          </div>
+        
     </ul>
 
     <a href="/profile/<%= locals.id  %>" class="btn btn-primary mt-3">Go back to profile</a>
