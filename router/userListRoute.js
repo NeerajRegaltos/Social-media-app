@@ -14,9 +14,7 @@ router.get("/", (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-
                     res.render("userList", { users, username, id: req.session.user._id, show: "", notShow: "none" });
-
                 }
             })
         }
