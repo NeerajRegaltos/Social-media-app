@@ -24,7 +24,10 @@
     </h4>
     <form method="post" class="mt-5">
         <input type="text" autocomplete="off" name="bio" class="form-control" placeholder="Your Bio" maxlength="122" autofocus style="border: none; outline: none;">
-        <input type="submit" value="Change Bio" class="form-control btn btn-primary mt-3">
+        <div class="text-center">
+            <progress id="prog" style="width: 50%; height: 40px; display: none;"></progress>
+        </div>
+        <button type="submit" onclick="progress()" class="form-control btn btn-primary mt-3 mb-5">Change Bio</button>
     </form>
 
 <a href="/profile/<%= locals.id  %>" class="btn btn-success mt-5">Go back to profile</a>
@@ -33,3 +36,10 @@
 
 
     <%- include("./layouts/mainFooter.ejs") %>
+
+    <script>
+        const prog = document.getElementById("prog");
+        function progress() {
+            prog.style.removeProperty("display")
+        }
+    </script>

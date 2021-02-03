@@ -1,24 +1,23 @@
 <%- include("./layouts/proheader.ejs") %>
 
-    <!-- <div class="flex-fill bd-highlight ms-1 mt-1">
-            <form action="/home/search" method="POST">
-                <input type="search" name="search" id="search" placeholder="search user">
-                <input type="submit" value="search">
-            </form>
+<style>
+    body {margin:0; overflow-x: hidden;}
+    
+    .navbar {
+      overflow: hidden;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+    
+    </style>
 
-        </div> -->
-
-    <div class="d-flex bd-highlight sticky-top">
-        <div class="flex-fill bd-highlight ms-1 mt-1">
-            <a href="/"> <img src="/images/logo.png" alt="logo" width="150px"></a>
-
-        </div>
-
-        <div class="bd-highlight mt-1 me-1">
-            <a href="/settings" class="btn btn-primary"><i class="fas fa-user-cog setting"></i></a>
-        </div>
+    <div class="navbar fixed-top">
+        <a href="/" > <img src="/images/logo.png" alt="logo" width="150px"></a>
+        <a href="/settings" class="btn btn-primary me-1"><i class="fas fa-user-cog setting"></i></a>
     </div>
-
 
     <div class="flex">
 
@@ -110,20 +109,19 @@
 
 
 
-                    </div>
-                </div>
+                        </div>
+                </div> <hr>
     </div>
-    <hr>
     <% } %>
 
         <% }) %>
 
-            <div class="d-flex bd-highlight fixed-bottom ">
+            <div class="d-flex bd-highlight fixed-bottom mb-3">
                 <div class="flex-fill bd-highlight ms-1">
                     <a href="/profile/<%= locals.id  %>" class="btn btn-danger ms-1"><i class="fas fa-user-tie"></i></a>
                 </div>
 
-                <div class="flex-fill bd-highlight ">
+                <div class="flex-fill bd-highlight">
                     <div class="dropdown">
                         <button class="btn-sm btn-danger" type="button" id="dropdownMenuButton"
                             data-bs-toggle="dropdown" aria-expanded="false" style="border: none; outline: none;">
