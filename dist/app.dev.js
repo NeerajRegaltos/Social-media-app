@@ -20,7 +20,13 @@ var _require = require("./cloudinary/index"),
 var upload = multer({
   storage: storage
 });
-var app = express();
+var app = express(); //creating http instance
+
+var http = require("http").createServer(app); //creating socket io 
+
+
+var io = require("socket.io")(http);
+
 app.use(express["static"](path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views"); //express middleware
@@ -42,7 +48,7 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(function () {
   console.log("DB CONNECTED");
   var PORT = process.env.PORT || 3000;
-  app.listen(PORT, function () {
+  http.listen(PORT, function () {
     console.log("Listening on port ", PORT);
   });
 })["catch"](function (err) {
@@ -93,6 +99,8 @@ var postComment = require("./router/postCommentRoute");
 
 var userlist = require("./router/userListRoute");
 
+var chat = require("./router/chatRoute");
+
 app.use("/login", login);
 app.use("/register", register);
 app.use("/logout", logout);
@@ -116,3 +124,4 @@ app.use("/deleteVideoes", requireLogin, deleteVideoes);
 app.use("/comment", requireLogin, comments);
 app.use("/postcomment", requireLogin, postComment);
 app.use("/userlist", requireLogin, userlist);
+app.use("/chat", requireLogin, chat);

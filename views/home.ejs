@@ -2,9 +2,8 @@
 
     <style>
         body {
-            margin: 0;
             overflow-x: hidden;
-            
+            overflow-y: scroll;
         }
     </style>
 
@@ -115,7 +114,7 @@
 
         <% }) %>
 
-            <div class="d-flex bd-highlight fixed-bottom mb-4">
+            <div class="d-flex bd-highlight fixed-bottom ">
                 <div class="flex-fill bd-highlight ms-1">
                     <a href="/profile/<%= locals.id  %>" class="btn btn-danger ms-1"><i class="fas fa-user-tie"></i></a>
                 </div>
@@ -133,6 +132,9 @@
                         </ul>
                     </div>
                 </div>
+                <div class=" bd-highlight me-3">
+                    <a href="https://guroopchat.herokuapp.com/" target="_blank" style="font-size:40px;"><i class="far fa-comment-dots"></i></a>
+                    </div>
             </div>
 
             <%- include("./layouts/profooter.ejs") %>

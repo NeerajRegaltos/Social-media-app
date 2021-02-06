@@ -9,8 +9,11 @@ const { storage } = require("./cloudinary/index");
 const upload = multer({ storage });
 
 
-
 const app = express();
+//creating http instance
+const http = require("http").createServer(app);
+//creating socket io 
+var io = require("socket.io")(http);
 
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -36,7 +39,7 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => {
         console.log("DB CONNECTED");
         const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => {
+        http.listen(PORT, () => {
             console.log("Listening on port ", PORT);
         });
     })
@@ -67,7 +70,8 @@ const videoCollection = require("./router/videoCollectionRoute");
 const deleteVideoes = require("./router/deleteVideoes");
 const comments = require("./router/commentRoute");
 const postComment = require("./router/postCommentRoute");
-const userlist = require("./router/userListRoute"); 
+const userlist = require("./router/userListRoute");
+const chat = require("./router/chatRoute");
 
 app.use("/login", login);
 app.use("/register", register);
@@ -92,3 +96,4 @@ app.use("/deleteVideoes", requireLogin, deleteVideoes);
 app.use("/comment", requireLogin, comments);
 app.use("/postcomment", requireLogin, postComment);
 app.use("/userlist", requireLogin, userlist);
+app.use("/chat", requireLogin, chat);
