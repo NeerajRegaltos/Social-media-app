@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(session({
-    secret: "Iloveyoumerikajal",
+    secret: "Ilovecoding",
     resave: true,
     saveUninitialized: false
 }));
